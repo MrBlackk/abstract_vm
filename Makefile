@@ -12,9 +12,9 @@
 
 NAME = avm
 FLAGS = -Wall -Wextra -Werror
-INC = -I./src/IOperand.hpp -I./src/eOperandType.hpp -I./src/OperandFactory.hpp
+INC = -I./src/IOperand.hpp -I./src/eOperandType.hpp -I./src/OperandFactory.hpp -I./src/OperandInt8.hpp
 
-SRC_NAME = main.cpp
+SRC_NAME = main.cpp OperandFactory.cpp OperandInt8.cpp
 
 OBJ_NAME = $(SRC_NAME:.cpp=.o)
 OBJ = $(addprefix $(OBJ_DIR),$(OBJ_NAME))

@@ -7,4 +7,7 @@ add_executable(avm
         src/main.cpp
         src/IOperand.hpp
         src/eOperandType.hpp
-        src/OperandFactory.hpp)
+        src/OperandFactory.hpp
+        src/OperandFactory.cpp
+        src/OperandInt8.hpp
+        src/OperandInt8.cpp)
