@@ -47,6 +47,7 @@ private:
     OperandInt8();
 
     char _value;
+    std::string _str;
 
 };
 

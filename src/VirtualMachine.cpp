@@ -16,9 +16,9 @@
 VirtualMachine::VirtualMachine() {
 }
 
-void VirtualMachine::push(std::string const &value) {
+void VirtualMachine::push(eOperandType type, std::string const &value) {
     std::cout << "Pushing " << value << std::endl;
-    _operands.push_back(_factory.createOperand(Int8, value));
+    _operands.push_back(_factory.createOperand(type, value));
 }
 
 void VirtualMachine::add() {

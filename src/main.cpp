@@ -13,35 +13,32 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "VirtualMachine.hpp"
+#include <vector>
+#include "Parser.hpp"
 
-std::string readData(std::istream &ifs) {
-    std::stringstream buffer;
-    buffer << ifs.rdbuf();
-    return buffer.str();
+std::vector<std::string> readFile(std::istream &ifs) {
+    std::vector<std::string> file;
+    std::string line;
+
+    while (getline(ifs, line)) {
+        file.push_back(line);
+    }
+    return file;
 }
 
 int main(int argc, char **argv) {
-
-    std::string fileStr;
+    std::vector<std::string> file;
     if (argc > 1) {
         std::ifstream ifs(argv[1]);
         if (ifs) {
-            fileStr = readData(ifs);
+            file = readFile(ifs);
         } else {
             std::cout << "Read error" << std::endl;
         }
     } else {
-        fileStr = readData(std::cin);
+        file = readFile(std::cin);
     }
 
-    std::cout << fileStr << std::endl;
-
-    VirtualMachine vm;
-    vm.push("42");
-    vm.push("43");
-    vm.dump();
-    vm.add();
-    vm.dump();
-
+    Parser parser;
+    parser.parse(file);
 }

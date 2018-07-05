@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   VirtualMachine.hpp                                 :+:      :+:    :+:   */
+/*   Parser.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vchornyi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/05 14:32:20 by vchornyi          #+#    #+#             */
-/*   Updated: 2018/07/05 14:32:21 by vchornyi         ###   ########.fr       */
+/*   Created: 2018/07/05 17:25:20 by vchornyi          #+#    #+#             */
+/*   Updated: 2018/07/05 17:25:21 by vchornyi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VIRTUAL_MACHINE_HPP
-#define VIRTUAL_MACHINE_HPP
+#ifndef PARSER_HPP
+#define PARSER_HPP
 
-#include <vector>
-#include "IOperand.hpp"
-#include "OperandFactory.hpp"
+#include <string>
+#include "eOperandType.hpp"
 
-class VirtualMachine {
+class Parser {
 public:
-    VirtualMachine();
-
-    void push(eOperandType type, std::string const &value);
-
-    void add();
-
-    void dump();
+    void parse(std::vector<std::string> &file);
 
 private:
-    std::vector<IOperand const *> _operands;
-    OperandFactory _factory;
+    eOperandType getType(std::string &value);
+
+    std::string getNumber(std::string &value);
 };
 
 #endif

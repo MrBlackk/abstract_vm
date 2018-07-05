@@ -18,6 +18,7 @@ OperandInt8::OperandInt8() {}
 
 OperandInt8::OperandInt8(std::string const &value) {
     _value = (char)std::stoi(value);
+    _str = value;
 }
 
 OperandInt8::OperandInt8(OperandInt8 const &src) {
@@ -65,7 +66,5 @@ IOperand const *OperandInt8::operator%(IOperand const &rhs) const {
 }
 
 std::string const &OperandInt8::toString(void) const {
-    std::ostringstream ostr;
-    ostr << (int)_value;
-    return ostr.str();
+    return _str;
 }
