@@ -10,4 +10,6 @@ add_executable(avm
         src/OperandFactory.hpp
         src/OperandFactory.cpp
         src/OperandInt8.hpp
-        src/OperandInt8.cpp)
+        src/OperandInt8.cpp
+        src/VirtualMachine.hpp
+        src/VirtualMachine.cpp)

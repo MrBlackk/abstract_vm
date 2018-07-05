@@ -18,7 +18,6 @@ OperandInt8::OperandInt8() {}
 
 OperandInt8::OperandInt8(std::string const &value) {
     _value = (char)std::stoi(value);
-    std::cout << "Val: " << _value << std::endl;
 }
 
 OperandInt8::OperandInt8(OperandInt8 const &src) {

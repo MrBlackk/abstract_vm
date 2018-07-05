@@ -13,7 +13,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "OperandFactory.hpp"
+#include "VirtualMachine.hpp"
 
 std::string readData(std::istream &ifs) {
     std::stringstream buffer;
@@ -37,15 +37,11 @@ int main(int argc, char **argv) {
 
     std::cout << fileStr << std::endl;
 
-    OperandFactory *factory = new OperandFactory();
-
-    IOperand const *op1 = factory->createOperand(Int8, "42");
-    std::cout << op1->toString() << std::endl;
-
-    IOperand const *op2 = factory->createOperand(Int8, "43");
-    std::cout << op2->toString() << std::endl;
-
-    IOperand const *op3 = *op1 + *op2;
-    std::cout << op3->toString() << std::endl;
+    VirtualMachine vm;
+    vm.push("42");
+    vm.push("43");
+    vm.dump();
+    vm.add();
+    vm.dump();
 
 }
