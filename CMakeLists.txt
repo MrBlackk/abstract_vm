@@ -11,6 +11,8 @@ add_executable(avm
         src/OperandFactory.cpp
         src/OperandInt8.hpp
         src/OperandInt8.cpp
+        src/OperandFloat.hpp
+        src/OperandFloat.cpp
         src/VirtualMachine.hpp
         src/VirtualMachine.cpp
         src/Parser.hpp

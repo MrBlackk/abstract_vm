@@ -37,8 +37,12 @@ void Parser::parse(std::vector<std::string> &file) {
 
 eOperandType Parser::getType(std::string &value) {
     std::string int8 = "int8";
+    std::string floatType = "float";
+
     if (!value.compare(0, int8.size(), int8))
         return Int8;
+    if (!value.compare(0, floatType.size(), floatType))
+        return Float;
     return Int8;
 }
 

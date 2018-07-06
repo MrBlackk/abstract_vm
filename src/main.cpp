@@ -16,7 +16,7 @@
 #include <vector>
 #include "Parser.hpp"
 
-std::vector<std::string> readFile(std::istream &ifs) {
+std::vector<std::string> readInstructions(std::istream &ifs) {
     std::vector<std::string> file;
     std::string line;
 
@@ -27,18 +27,18 @@ std::vector<std::string> readFile(std::istream &ifs) {
 }
 
 int main(int argc, char **argv) {
-    std::vector<std::string> file;
+    std::vector<std::string> instructions;
     if (argc > 1) {
         std::ifstream ifs(argv[1]);
         if (ifs) {
-            file = readFile(ifs);
+            instructions = readInstructions(ifs);
         } else {
             std::cout << "Read error" << std::endl;
         }
     } else {
-        file = readFile(std::cin);
+        instructions = readInstructions(std::cin);
     }
 
     Parser parser;
-    parser.parse(file);
+    parser.parse(instructions);
 }

@@ -3,3 +3,7 @@ push int8(43)
 dump
 add
 dump
+push float(12.12)
+dump
+add
+dump

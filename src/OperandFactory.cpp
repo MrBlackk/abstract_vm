@@ -13,14 +13,21 @@
 #include <iostream>
 #include "OperandFactory.hpp"
 #include "OperandInt8.hpp"
+#include "OperandFloat.hpp"
 
 IOperand const *OperandFactory::createOperand(eOperandType type, std::string const &value) const {
     if (type == Int8) {
         return createInt8(value);
+    } else if (type == Float){
+        return createFloat(value);
     }
     return createInt8(value);
 }
 
 IOperand const *OperandFactory::createInt8(std::string const &value) const {
     return new OperandInt8(value);
+}
+
+IOperand const *OperandFactory::createFloat(std::string const &value) const {
+    return new OperandFloat(value);
 }

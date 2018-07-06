@@ -17,7 +17,7 @@ VirtualMachine::VirtualMachine() {
 }
 
 void VirtualMachine::push(eOperandType type, std::string const &value) {
-    std::cout << "Pushing " << value << std::endl;
+    std::cout << "Pushing type:" << type << " val: " << value << std::endl;
     _operands.push_back(_factory.createOperand(type, value));
 }
 
@@ -25,10 +25,16 @@ void VirtualMachine::add() {
     std::cout << "Adding" << std::endl;
     IOperand const *op1 = _operands.back();
     _operands.pop_back();
+    std::cout << "First type: " << (*op1).getType();
 
     IOperand const *op2 = _operands.back();
     _operands.pop_back();
-
+    std::cout << " Second type: " << (*op2).getType() << std::endl;
+    if ((*op1).getType() < (*op2).getType()) {
+        op1 = _factory.createOperand((*op2).getType(), (*op1).toString());
+    } else if ((*op1).getType() > (*op2).getType()){
+        op2 = _factory.createOperand((*op1).getType(), (*op2).toString());
+    }
     _operands.push_back(*op1 + *op2);
 }
 
