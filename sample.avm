@@ -7,3 +7,4 @@ push float(12.12)
 dump
 add
 dump
+exit

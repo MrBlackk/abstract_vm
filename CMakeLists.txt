@@ -16,4 +16,6 @@ add_executable(avm
         src/VirtualMachine.hpp
         src/VirtualMachine.cpp
         src/Parser.hpp
-        src/Parser.cpp)
+        src/Parser.cpp
+        src/Lexer.hpp
+        src/Lexer.cpp)

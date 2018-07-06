@@ -15,6 +15,7 @@
 #include <sstream>
 #include <vector>
 #include "Parser.hpp"
+#include "Lexer.hpp"
 
 std::vector<std::string> readInstructions(std::istream &ifs) {
     std::vector<std::string> file;
@@ -38,6 +39,9 @@ int main(int argc, char **argv) {
     } else {
         instructions = readInstructions(std::cin);
     }
+
+    Lexer lexer;
+    lexer.check(instructions);
 
     Parser parser;
     parser.parse(instructions);
