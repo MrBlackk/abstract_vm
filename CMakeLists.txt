@@ -5,14 +5,14 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_executable(avm
         src/main.cpp
-        src/IOperand.hpp
+        src/operands/IOperand.hpp
         src/eOperandType.hpp
         src/OperandFactory.hpp
         src/OperandFactory.cpp
-        src/OperandInt8.hpp
-        src/OperandInt8.cpp
-        src/OperandFloat.hpp
-        src/OperandFloat.cpp
+        src/operands/OperandInt8.hpp
+        src/operands/OperandInt8.cpp
+        src/operands/OperandFloat.hpp
+        src/operands/OperandFloat.cpp
         src/VirtualMachine.hpp
         src/VirtualMachine.cpp
         src/Parser.hpp

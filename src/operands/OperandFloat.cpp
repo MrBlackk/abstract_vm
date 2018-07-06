@@ -62,6 +62,7 @@ IOperand const *OperandFloat::operator/(IOperand const &rhs) const {
 
 IOperand const *OperandFloat::operator%(IOperand const &rhs) const {
     // exception
+    (void)rhs;
     return new OperandFloat("0");
 }
 

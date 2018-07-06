@@ -12,8 +12,8 @@
 
 #include <iostream>
 #include "OperandFactory.hpp"
-#include "OperandInt8.hpp"
-#include "OperandFloat.hpp"
+#include "operands/OperandInt8.hpp"
+#include "operands/OperandFloat.hpp"
 
 IOperand const *OperandFactory::createOperand(eOperandType type, std::string const &value) const {
     if (type == Int8) {

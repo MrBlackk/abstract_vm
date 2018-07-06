@@ -14,7 +14,7 @@
 #define OPERAND_INT8_HPP
 
 #include "IOperand.hpp"
-#include "eOperandType.hpp"
+#include "../eOperandType.hpp"
 
 class OperandInt8 : public IOperand {
 

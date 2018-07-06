@@ -13,7 +13,7 @@
 #ifndef OPERAND_FACTORY_HPP
 #define OPERAND_FACTORY_HPP
 
-#include "IOperand.hpp"
+#include "operands/IOperand.hpp"
 #include "eOperandType.hpp"
 
 class OperandFactory {

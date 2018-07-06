@@ -14,7 +14,7 @@
 #define I_OPERAND_HPP
 
 #include <string>
-#include "eOperandType.hpp"
+#include "../eOperandType.hpp"
 
 class IOperand {
 

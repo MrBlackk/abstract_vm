@@ -14,7 +14,7 @@
 #define OPERAND_FLOAT_HPP
 
 #include "IOperand.hpp"
-#include "eOperandType.hpp"
+#include "../eOperandType.hpp"
 
 class OperandFloat : public IOperand {
 

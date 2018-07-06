@@ -12,10 +12,10 @@
 
 NAME = avm
 FLAGS = -Wall -Wextra -Werror
-INC = -I./src/IOperand.hpp -I./src/eOperandType.hpp -I./src/OperandFactory.hpp \
--I./src/OperandInt8.hpp -I./src/OperandFloat.hpp -I./src/VirtualMachine.hpp  -I./src/Parser.hpp
+INC = -I./src/operands/IOperand.hpp -I./src/eOperandType.hpp -I./src/OperandFactory.hpp \
+-I./src/operands/OperandInt8.hpp -I./src/operands/OperandFloat.hpp -I./src/VirtualMachine.hpp  -I./src/Parser.hpp
 
-SRC_NAME = main.cpp OperandFactory.cpp OperandInt8.cpp OperandFloat.cpp VirtualMachine.cpp Parser.cpp
+SRC_NAME = main.cpp OperandFactory.cpp operands/OperandInt8.cpp operands/OperandFloat.cpp VirtualMachine.cpp Parser.cpp
 
 OBJ_NAME = $(SRC_NAME:.cpp=.o)
 OBJ = $(addprefix $(OBJ_DIR),$(OBJ_NAME))
@@ -31,6 +31,7 @@ $(NAME): $(OBJ)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/operands
 	@echo "##### Creating" [ $@ ] " #####"
 	@clang++ $(FLAGS) -o $@ -c $< $(INC)
 

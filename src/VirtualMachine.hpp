@@ -14,7 +14,7 @@
 #define VIRTUAL_MACHINE_HPP
 
 #include <vector>
-#include "IOperand.hpp"
+#include "operands/IOperand.hpp"
 #include "OperandFactory.hpp"
 
 class VirtualMachine {
