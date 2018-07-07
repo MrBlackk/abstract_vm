@@ -21,21 +21,30 @@ void VirtualMachine::push(eOperandType type, std::string const &value) {
     _operands.push_back(_factory.createOperand(type, value));
 }
 
+void VirtualMachine::pop() {
+    std::cout << "Pop" << std::endl;
+    _operands.pop_back();
+}
+
 void VirtualMachine::add() {
     std::cout << "Adding" << std::endl;
-    IOperand const *op1 = _operands.back();
-    _operands.pop_back();
-    std::cout << "First type: " << (*op1).getType();
+    setOperands();
+    _operands.push_back(*_op1 + *_op2);
+}
 
-    IOperand const *op2 = _operands.back();
+void VirtualMachine::setOperands() {
+    _op1 = _operands.back();
     _operands.pop_back();
-    std::cout << " Second type: " << (*op2).getType() << std::endl;
-    if ((*op1).getType() < (*op2).getType()) {
-        op1 = _factory.createOperand((*op2).getType(), (*op1).toString());
-    } else if ((*op1).getType() > (*op2).getType()){
-        op2 = _factory.createOperand((*op1).getType(), (*op2).toString());
+    std::cout << "First type: " << (*_op1).getType();
+
+    _op2 = _operands.back();
+    _operands.pop_back();
+    std::cout << " Second type: " << (*_op2).getType() << std::endl;
+    if ((*_op1).getType() < (*_op2).getType()) {
+        _op1 = _factory.createOperand((*_op2).getType(), (*_op1).toString());
+    } else if ((*_op1).getType() > (*_op2).getType()) {
+        _op2 = _factory.createOperand((*_op1).getType(), (*_op2).toString());
     }
-    _operands.push_back(*op1 + *op2);
 }
 
 void VirtualMachine::dump() {
@@ -43,4 +52,29 @@ void VirtualMachine::dump() {
     std::vector<IOperand const *>::iterator it;
     for (it = _operands.begin(); it != _operands.end(); it++)
         std::cout << (*it)->toString() << std::endl;
+}
+
+void VirtualMachine::sub() {
+    std::cout << "Sub" << std::endl;
+    setOperands();
+    _operands.push_back(*_op1 - *_op2);
+}
+
+void VirtualMachine::mul() {
+    std::cout << "Mul" << std::endl;
+    setOperands();
+    _operands.push_back(*_op1 * *_op2);
+}
+
+
+void VirtualMachine::div() {
+    std::cout << "Div" << std::endl;
+    setOperands();
+    _operands.push_back(*_op1 / *_op2);
+}
+
+void VirtualMachine::mod() {
+    std::cout << "Mod" << std::endl;
+    setOperands();
+    _operands.push_back(*_op1 % *_op2);
 }

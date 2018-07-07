@@ -23,13 +23,27 @@ public:
 
     void push(eOperandType type, std::string const &value);
 
+    void pop();
+
     void add();
 
     void dump();
 
+    void sub();
+
+    void mul();
+
+    void div();
+
+    void mod();
+
 private:
+    void setOperands();
+
     std::vector<IOperand const *> _operands;
     OperandFactory _factory;
+    IOperand const *_op1;
+    IOperand const *_op2;
 };
 
 #endif

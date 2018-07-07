@@ -35,7 +35,7 @@ void Parser::parse(std::vector<std::string> &file) {
             value = (*it).substr(pushStr.size() + 1);
             vm.push(getType(value), getNumber(value));
         } else if (!(*it).compare(0, popStr.size(), popStr)) {
-//            vm.pop();
+            vm.pop();
         } else if (!(*it).compare(0, dumpStr.size(), dumpStr)) {
             vm.dump();
         } else if (!(*it).compare(0, assertStr.size(), assertStr)) {
@@ -44,13 +44,13 @@ void Parser::parse(std::vector<std::string> &file) {
         } else if (!(*it).compare(0, addStr.size(), addStr)) {
             vm.add();
         } else if (!(*it).compare(0, subStr.size(), subStr)) {
-//            vm.sub();
+            vm.sub();
         } else if (!(*it).compare(0, mulStr.size(), mulStr)) {
-//            vm.mul();
+            vm.mul();
         } else if (!(*it).compare(0, divStr.size(), divStr)) {
-//            vm.div();
+            vm.div();
         } else if (!(*it).compare(0, modStr.size(), modStr)) {
-//            vm.mod();
+            vm.mod();
         } else if (!(*it).compare(0, printStr.size(), printStr)) {
 //            vm.print();
         } else {
