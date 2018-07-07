@@ -46,8 +46,11 @@ public:
 private:
     OperandFloat();
 
+    std::string getPreciseString(float value, int precision) const;
+
     float _value;
     std::string _str;
+    int _precision;
 
 };
 

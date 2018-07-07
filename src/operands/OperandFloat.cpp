@@ -10,15 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include <sstream>
+#include <iomanip>
 #include "OperandFloat.hpp"
 
 OperandFloat::OperandFloat() {}
 
 OperandFloat::OperandFloat(std::string const &value) {
+    std::size_t pos = value.find('.');
+    if (pos != std::string::npos)
+        _precision = (int) (value.length() - pos - 1);
+    else
+        _precision = 1;
+
     _value = std::stof(value);
-    _str = value;
+    _str = getPreciseString(_value, _precision);
 }
 
 OperandFloat::OperandFloat(OperandFloat const &src) {
@@ -29,11 +35,19 @@ OperandFloat::~OperandFloat() {}
 
 OperandFloat &OperandFloat::operator=(OperandFloat const &rhs) {
     _value = rhs._value;
+    _precision = rhs._precision;
+    _str = rhs._str;
     return *this;
 }
 
+std::string OperandFloat::getPreciseString(float value, int precision) const {
+    std::stringstream stream;
+    stream << std::fixed << std::setprecision(precision) << value;
+    return stream.str();
+}
+
 int OperandFloat::getPrecision(void) const {
-    return 0;
+    return _precision;
 }
 
 eOperandType OperandFloat::getType(void) const {
@@ -42,27 +56,31 @@ eOperandType OperandFloat::getType(void) const {
 
 IOperand const *OperandFloat::operator+(IOperand const &rhs) const {
     OperandFloat const *tmp = dynamic_cast<OperandFloat const *>(&rhs);
-    return new OperandFloat(std::to_string(_value + tmp->_value));
+    int maxPrecision = tmp->_precision > _precision ? tmp->_precision : _precision;
+    return new OperandFloat(getPreciseString(_value + tmp->_value, maxPrecision));
 }
 
 IOperand const *OperandFloat::operator-(IOperand const &rhs) const {
     OperandFloat const *tmp = dynamic_cast<OperandFloat const *>(&rhs);
-    return new OperandFloat(std::to_string(_value - tmp->_value));
+    int maxPrecision = tmp->_precision > _precision ? tmp->_precision : _precision;
+    return new OperandFloat(getPreciseString(_value - tmp->_value, maxPrecision));
 }
 
 IOperand const *OperandFloat::operator*(IOperand const &rhs) const {
     OperandFloat const *tmp = dynamic_cast<OperandFloat const *>(&rhs);
-    return new OperandFloat(std::to_string(_value * tmp->_value));
+    int maxPrecision = tmp->_precision > _precision ? tmp->_precision : _precision;
+    return new OperandFloat(getPreciseString(_value * tmp->_value, maxPrecision));
 }
 
 IOperand const *OperandFloat::operator/(IOperand const &rhs) const {
     OperandFloat const *tmp = dynamic_cast<OperandFloat const *>(&rhs);
-    return new OperandFloat(std::to_string(_value / tmp->_value));
+    int maxPrecision = tmp->_precision > _precision ? tmp->_precision : _precision;
+    return new OperandFloat(getPreciseString(_value / tmp->_value, maxPrecision));
 }
 
 IOperand const *OperandFloat::operator%(IOperand const &rhs) const {
     // exception
-    (void)rhs;
+    (void) rhs;
     return new OperandFloat("0");
 }
 
