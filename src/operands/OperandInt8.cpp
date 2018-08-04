@@ -16,10 +16,7 @@
 
 OperandInt8::OperandInt8() {}
 
-OperandInt8::OperandInt8(std::string const &value) {
-    _value = (char)std::stoi(value);
-    _str = std::to_string(_value);
-}
+OperandInt8::OperandInt8(std::string const &value) : Operand(value) {}
 
 OperandInt8::OperandInt8(OperandInt8 const &src) {
     *this = src;
@@ -28,7 +25,7 @@ OperandInt8::OperandInt8(OperandInt8 const &src) {
 OperandInt8::~OperandInt8() {}
 
 OperandInt8 &OperandInt8::operator=(OperandInt8 const &rhs) {
-    _value = rhs._value;
+    (void) rhs;
     return *this;
 }
 
@@ -40,31 +37,7 @@ eOperandType OperandInt8::getType(void) const {
     return Int8;
 }
 
-//IOperand const *OperandInt8::operator+(IOperand const &rhs) const {
-//    OperandInt8 const *tmp = dynamic_cast<OperandInt8 const *>(&rhs);
-//    return new OperandInt8(std::to_string(_value + tmp->_value));
-//}
-
-IOperand const *OperandInt8::operator-(IOperand const &rhs) const {
-    OperandInt8 const *tmp = dynamic_cast<OperandInt8 const *>(&rhs);
-    return new OperandInt8(std::to_string(_value - tmp->_value));
-}
-
-IOperand const *OperandInt8::operator*(IOperand const &rhs) const {
-    OperandInt8 const *tmp = dynamic_cast<OperandInt8 const *>(&rhs);
-    return new OperandInt8(std::to_string(_value * tmp->_value));
-}
-
-IOperand const *OperandInt8::operator/(IOperand const &rhs) const {
-    OperandInt8 const *tmp = dynamic_cast<OperandInt8 const *>(&rhs);
-    return new OperandInt8(std::to_string(_value / tmp->_value));
-}
-
 IOperand const *OperandInt8::operator%(IOperand const &rhs) const {
-    OperandInt8 const *tmp = dynamic_cast<OperandInt8 const *>(&rhs);
-    return new OperandInt8(std::to_string(_value % tmp->_value));
+    return new OperandInt8(std::to_string(std::stol(_str) % std::stol(rhs.toString())));
 }
 
-std::string const &OperandInt8::toString(void) const {
-    return _str;
-}

@@ -1,6 +1,14 @@
-//
-// Created by chv on 13.07.2018.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Operand.hpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vchornyi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/04 17:46:12 by vchornyi          #+#    #+#             */
+/*   Updated: 2018/08/04 17:46:13 by vchornyi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef OPERAND_HPP
 #define OPERAND_HPP
@@ -10,21 +18,31 @@
 
 class Operand: public IOperand {
 public:
-//    virtual int getPrecision(void) const = 0;
-//
-//    virtual eOperandType getType(void) const = 0;
+    Operand();
+
+    Operand(std::string const &value);
 
     IOperand const *operator+(IOperand const &rhs) const;
 
-//    virtual IOperand const *operator-(IOperand const &rhs) const = 0;
-//
-//    virtual IOperand const *operator*(IOperand const &rhs) const = 0;
-//
-//    virtual IOperand const *operator/(IOperand const &rhs) const = 0;
-//
-//    virtual IOperand const *operator%(IOperand const &rhs) const = 0;
-//
-//    virtual std::string const &toString(void) const = 0;
+    IOperand const *operator-(IOperand const &rhs) const;
+
+    IOperand const *operator*(IOperand const &rhs) const;
+
+    IOperand const *operator/(IOperand const &rhs) const;
+
+    std::string const &toString(void) const;
+
+protected:
+    std::string _str;
+
+private:
+    std::string getStringWithoutTrailingZeros(long double value) const;
+    void prepareOperands(IOperand const &rhs)const;
+
+    mutable long double _first;
+    mutable long double _second;
+    mutable eOperandType _type;
+
 };
 
 #endif //OPERAND_HPP

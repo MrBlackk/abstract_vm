@@ -32,26 +32,10 @@ public:
 
     eOperandType getType(void) const;
 
-//    IOperand const *operator+(IOperand const &rhs) const;
-
-    IOperand const *operator-(IOperand const &rhs) const;
-
-    IOperand const *operator*(IOperand const &rhs) const;
-
-    IOperand const *operator/(IOperand const &rhs) const;
-
     IOperand const *operator%(IOperand const &rhs) const;
-
-    std::string const &toString(void) const;
 
 private:
     OperandFloat();
-
-    std::string getPreciseString(float value, int precision) const;
-
-    float _value;
-    std::string _str;
-    int _precision;
 
 };
 

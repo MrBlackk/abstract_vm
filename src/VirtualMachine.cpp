@@ -40,11 +40,6 @@ void VirtualMachine::setOperands() {
     _op2 = _operands.back();
     _operands.pop_back();
     std::cout << " Second type: " << (*_op2).getType() << std::endl;
-//    if ((*_op1).getType() < (*_op2).getType()) {
-//        _op1 = _factory.createOperand((*_op2).getType(), (*_op1).toString());
-//    } else if ((*_op1).getType() > (*_op2).getType()) {
-//        _op2 = _factory.createOperand((*_op1).getType(), (*_op2).toString());
-//    }
 }
 
 void VirtualMachine::dump() {

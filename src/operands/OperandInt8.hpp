@@ -32,24 +32,10 @@ public:
 
     eOperandType getType(void) const;
 
-//    IOperand const *operator+(IOperand const &rhs) const;
-
-    IOperand const *operator-(IOperand const &rhs) const;
-
-    IOperand const *operator*(IOperand const &rhs) const;
-
-    IOperand const *operator/(IOperand const &rhs) const;
-
     IOperand const *operator%(IOperand const &rhs) const;
-
-    std::string const &toString(void) const;
 
 private:
     OperandInt8();
-
-    char _value;
-    std::string _str;
-
 };
 
 #endif
