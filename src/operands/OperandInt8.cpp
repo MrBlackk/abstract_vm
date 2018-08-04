@@ -18,7 +18,7 @@ OperandInt8::OperandInt8() {}
 
 OperandInt8::OperandInt8(std::string const &value) {
     _value = (char)std::stoi(value);
-    _str = value;
+    _str = std::to_string(_value);
 }
 
 OperandInt8::OperandInt8(OperandInt8 const &src) {
@@ -40,10 +40,10 @@ eOperandType OperandInt8::getType(void) const {
     return Int8;
 }
 
-IOperand const *OperandInt8::operator+(IOperand const &rhs) const {
-    OperandInt8 const *tmp = dynamic_cast<OperandInt8 const *>(&rhs);
-    return new OperandInt8(std::to_string(_value + tmp->_value));
-}
+//IOperand const *OperandInt8::operator+(IOperand const &rhs) const {
+//    OperandInt8 const *tmp = dynamic_cast<OperandInt8 const *>(&rhs);
+//    return new OperandInt8(std::to_string(_value + tmp->_value));
+//}
 
 IOperand const *OperandInt8::operator-(IOperand const &rhs) const {
     OperandInt8 const *tmp = dynamic_cast<OperandInt8 const *>(&rhs);

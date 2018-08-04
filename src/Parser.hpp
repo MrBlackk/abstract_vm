@@ -14,6 +14,7 @@
 #define PARSER_HPP
 
 #include <string>
+#include <vector>
 #include "eOperandType.hpp"
 
 class Parser {

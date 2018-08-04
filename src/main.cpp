@@ -40,9 +40,14 @@ int main(int argc, char **argv) {
         instructions = readInstructions(std::cin);
     }
 
-    Lexer lexer;
-    lexer.check(instructions);
+//    Lexer lexer;
+//    lexer.check(instructions);
 
     Parser parser;
     parser.parse(instructions);
+
+    double d1 = std::stod("15");
+    double d2 = std::stod("14");
+
+    std::cout << "D: " << d1 / d2 << std::endl;
 }

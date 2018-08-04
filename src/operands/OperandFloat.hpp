@@ -15,8 +15,9 @@
 
 #include "IOperand.hpp"
 #include "../eOperandType.hpp"
+#include "Operand.hpp"
 
-class OperandFloat : public IOperand {
+class OperandFloat : public Operand {
 
 public:
     OperandFloat(std::string const &value);
@@ -31,7 +32,7 @@ public:
 
     eOperandType getType(void) const;
 
-    IOperand const *operator+(IOperand const &rhs) const;
+//    IOperand const *operator+(IOperand const &rhs) const;
 
     IOperand const *operator-(IOperand const &rhs) const;
 

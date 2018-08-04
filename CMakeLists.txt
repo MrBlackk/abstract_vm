@@ -18,4 +18,4 @@ add_executable(avm
         src/Parser.hpp
         src/Parser.cpp
         src/Lexer.hpp
-        src/Lexer.cpp)
+        src/Lexer.cpp src/operands/Operand.cpp src/operands/Operand.hpp)

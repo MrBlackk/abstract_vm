@@ -15,8 +15,9 @@
 
 #include "IOperand.hpp"
 #include "../eOperandType.hpp"
+#include "Operand.hpp"
 
-class OperandInt8 : public IOperand {
+class OperandInt8 : public Operand {
 
 public:
     OperandInt8(std::string const &value);
@@ -31,7 +32,7 @@ public:
 
     eOperandType getType(void) const;
 
-    IOperand const *operator+(IOperand const &rhs) const;
+//    IOperand const *operator+(IOperand const &rhs) const;
 
     IOperand const *operator-(IOperand const &rhs) const;
 
