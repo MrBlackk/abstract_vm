@@ -53,8 +53,6 @@ void Parser::parse(std::vector<std::string> &file) {
             vm.mod();
         } else if (!(*it).compare(0, printStr.size(), printStr)) {
             vm.print();
-        } else {
-            return;
         }
     }
 }
