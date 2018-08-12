@@ -17,11 +17,14 @@
 #include "Parser.hpp"
 #include "Lexer.hpp"
 
-std::vector<std::string> readInstructions(std::istream &ifs) {
+std::vector<std::string> readInstructions(std::istream &ifs, bool isStdIn) {
     std::vector<std::string> file;
     std::string line;
 
     while (getline(ifs, line)) {
+		if (isStdIn && line == ";;") {
+			return file;
+		}
         file.push_back(line);
     }
     return file;
@@ -32,12 +35,12 @@ int main(int argc, char **argv) {
     if (argc > 1) {
         std::ifstream ifs(argv[1]);
         if (ifs) {
-            instructions = readInstructions(ifs);
+            instructions = readInstructions(ifs, false);
         } else {
             std::cout << "Read error" << std::endl;
         }
     } else {
-        instructions = readInstructions(std::cin);
+        instructions = readInstructions(std::cin, true);
     }
 
     Lexer lexer;
