@@ -21,6 +21,22 @@ void VirtualMachine::push(eOperandType type, std::string const &value) {
     _operands.push_back(_factory.createOperand(type, value));
 }
 
+void VirtualMachine::assert(eOperandType type, std::string const &value) {
+    std::cout << "Asserting that type:" << type << " val: " << value << std::endl;
+    IOperand const *operand = _operands.back();
+    if (operand->getType() != type || operand->toString() != value) {
+        std::cout << "ASSERT ERROR" << std::endl;
+    }
+}
+
+void VirtualMachine::print() {
+    std::cout << "Print" << std::endl;
+	IOperand const *operand = _operands.back();
+	assert(Int8, operand->toString());
+	char ch = (char) std::stoi(operand->toString());
+	std::cout << ch << std::endl;
+}
+
 void VirtualMachine::pop() {
     std::cout << "Pop" << std::endl;
     _operands.pop_back();

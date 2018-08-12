@@ -1,11 +1,19 @@
 push int8(42)
+assert int8(42)
+print
 push int8(43)
+assert int8(43)
+print
 dump
 add
+assert int8(85)
+print
 dump
 push float(12.12)
+assert float(12.12)
 dump
 add
+assert float(97.12)
 dump
 push int8(100)
 sub
@@ -22,4 +30,5 @@ dump
 push int8(21)
 mod
 dump
+assert int8(1)
 exit

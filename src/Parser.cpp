@@ -40,7 +40,7 @@ void Parser::parse(std::vector<std::string> &file) {
             vm.dump();
         } else if (!(*it).compare(0, assertStr.size(), assertStr)) {
             value = (*it).substr(assertStr.size() + 1);
-//            vm.assert(getNumber(value));
+            vm.assert(getType(value), getNumber(value));
         } else if (!(*it).compare(0, addStr.size(), addStr)) {
             vm.add();
         } else if (!(*it).compare(0, subStr.size(), subStr)) {
@@ -52,7 +52,7 @@ void Parser::parse(std::vector<std::string> &file) {
         } else if (!(*it).compare(0, modStr.size(), modStr)) {
             vm.mod();
         } else if (!(*it).compare(0, printStr.size(), printStr)) {
-//            vm.print();
+            vm.print();
         } else {
             return;
         }
