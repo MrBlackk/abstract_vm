@@ -30,6 +30,8 @@ public:
 
     IOperand const *operator/(IOperand const &rhs) const;
 
+    IOperand const *operator%(IOperand const &rhs) const;
+
     std::string const &toString(void) const;
 
 protected:

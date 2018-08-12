@@ -36,8 +36,3 @@ int OperandInt8::getPrecision(void) const {
 eOperandType OperandInt8::getType(void) const {
     return Int8;
 }
-
-IOperand const *OperandInt8::operator%(IOperand const &rhs) const {
-    return new OperandInt8(std::to_string(std::stol(_str) % std::stol(rhs.toString())));
-}
-

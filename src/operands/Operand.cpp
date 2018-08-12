@@ -57,6 +57,17 @@ IOperand const *Operand::operator/(IOperand const &rhs) const{
     return factory.createOperand(_type, getStringWithoutTrailingZeros(_first / _second));
 }
 
+IOperand const *Operand::operator%(IOperand const &rhs) const{
+    OperandFactory factory;
+    if (this->getPrecision() >= Float || rhs.getPrecision() >= Float) {
+        std::cout << "ERROR MODULO FLOAT/DOUBLE" << std::endl;
+    }
+    _type = this->getPrecision() < rhs.getPrecision() ? rhs.getType() : this->getType();
+    long long first = std::stol(this->toString());
+    long long second = std::stol(rhs.toString());
+    return factory.createOperand(_type, getStringWithoutTrailingZeros(first % second));
+}
+
 std::string const &Operand::toString(void) const {
     return _str;
 }

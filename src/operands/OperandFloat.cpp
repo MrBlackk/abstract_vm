@@ -37,9 +37,3 @@ eOperandType OperandFloat::getType(void) const {
     return Float;
 }
 
-IOperand const *OperandFloat::operator%(IOperand const &rhs) const {
-    // exception
-    (void) rhs;
-    return new OperandFloat("0");
-}
-
