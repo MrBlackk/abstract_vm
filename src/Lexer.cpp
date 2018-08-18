@@ -50,7 +50,7 @@ void Lexer::check(std::vector<std::string> &file) {
         }
     }
 
-    if (!std::regex_match(*it, exit)) {
+    if (it == file.end() || !std::regex_match(*it, exit)) {
         errorMessage(i, "No exit command at end");
     }
 
