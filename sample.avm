@@ -2,7 +2,7 @@
 ; sample.avm
 ; -----------
 ;;
-push int8(42)   ;comment could be here
+push int8(42);comment could be here
 assert int8(42)
 
 ;print

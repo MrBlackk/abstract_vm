@@ -43,8 +43,13 @@ int main(int argc, char **argv) {
         instructions = readInstructions(std::cin, true);
     }
 
-    Lexer lexer;
-    lexer.check(instructions);
+    try {
+        Lexer lexer;
+        lexer.check(instructions);
+    } catch (Lexer::LexicalException &e) {
+        std::cout << e.what() << " ocurred, stopping virtual machine." << std::endl;
+        return -1;
+    }
 
     Parser parser;
     parser.parse(instructions);
