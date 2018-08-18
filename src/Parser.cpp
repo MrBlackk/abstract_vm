@@ -26,6 +26,7 @@ void Parser::parse(std::vector<std::string> &file) {
     std::string divStr = "div";
     std::string modStr = "mod";
     std::string printStr = "print";
+    std::string exitStr = "exit";
     std::string value;
 
     std::vector<std::string>::iterator it;
@@ -53,6 +54,8 @@ void Parser::parse(std::vector<std::string> &file) {
             vm.mod();
         } else if (!(*it).compare(0, printStr.size(), printStr)) {
             vm.print();
+        } else if (!(*it).compare(0, exitStr.size(), exitStr)) {
+            break;
         }
     }
 }

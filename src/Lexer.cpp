@@ -30,14 +30,18 @@ Lexer &Lexer::operator=(Lexer const &rhs) {
 }
 
 void Lexer::check(std::vector<std::string> &file) {
-    std::regex instr("(pop|dump|add|sub|mul|div|mod|print|exit)(;.*)?");
+    std::regex instr("(pop|dump|add|sub|mul|div|mod|print)(;.*)?");
     std::regex instrParam("(push|assert) ((int8|int16|int32)\\(\\d+\\)|(float|double)\\(\\d+\\.\\d+\\))(;.*)?)");
     std::regex comment(";.*");
     std::regex emptyLine("");
+    std::regex exit("exit");
 
     std::vector<std::string>::iterator it;
     int i = 1;
     for (it = file.begin(); it != file.end(); it++, i++) {
+        if (std::regex_match(*it, exit)) {
+            break;
+        }
         if (!std::regex_match(*it, instr)
             && !std::regex_match(*it, instrParam)
             && !std::regex_match(*it, comment)
@@ -46,8 +50,7 @@ void Lexer::check(std::vector<std::string> &file) {
         }
     }
 
-    std::regex exit("exit");
-    if (!std::regex_match(file.back(), exit)) {
+    if (!std::regex_match(*it, exit)) {
         errorMessage(i, "No exit command at end");
     }
 
