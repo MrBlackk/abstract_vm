@@ -37,7 +37,7 @@ public:
 private:
     void errorMessage(int line, std::string const &msg);
 
-    bool _isOK;
+    bool _isError;
 };
 
 #endif

@@ -17,20 +17,22 @@ VirtualMachine::VirtualMachine() {
 }
 
 void VirtualMachine::push(eOperandType type, std::string const &value) {
-    std::cout << "Pushing type:" << type << " val: " << value << std::endl;
     _operands.push_back(_factory.createOperand(type, value));
 }
 
 void VirtualMachine::assert(eOperandType type, std::string const &value) {
-    std::cout << "Asserting that type:" << type << " val: " << value << std::endl;
+    checkStackSize("assert");
     IOperand const *operand = _operands.back();
-    if (operand->getType() != type || operand->toString() != value) {
-        std::cout << "ASSERT ERROR" << std::endl;
+    if (operand->getType() != type) {
+        throw VirtualMachineException("Assertion error - Wrong type");
+    }
+    if (operand->toString() != value) {
+        throw VirtualMachineException("Assertion error - Wrong value");
     }
 }
 
 void VirtualMachine::print() {
-    std::cout << "Print" << std::endl;
+    checkStackSize("print");
 	IOperand const *operand = _operands.back();
 	assert(Int8, operand->toString());
 	char ch = (char) std::stoi(operand->toString());
@@ -38,54 +40,75 @@ void VirtualMachine::print() {
 }
 
 void VirtualMachine::pop() {
-    std::cout << "Pop" << std::endl;
+    checkStackSize("pop");
     _operands.pop_back();
 }
 
 void VirtualMachine::add() {
-    std::cout << "Adding" << std::endl;
     setOperands();
     _operands.push_back(*_op1 + *_op2);
 }
 
 void VirtualMachine::setOperands() {
+    checkStackSize("getting first operand");
     _op1 = _operands.back();
     _operands.pop_back();
-    std::cout << "First type: " << (*_op1).getType();
 
+    checkStackSize("getting second operand");
     _op2 = _operands.back();
     _operands.pop_back();
-    std::cout << " Second type: " << (*_op2).getType() << std::endl;
 }
 
 void VirtualMachine::dump() {
-    std::cout << "Dump:" << std::endl;
-    std::vector<IOperand const *>::iterator it;
-    for (it = _operands.begin(); it != _operands.end(); it++)
+    std::vector<IOperand const *>::reverse_iterator it;
+    for (it = _operands.rbegin(); it != _operands.rend(); it++)
         std::cout << (*it)->toString() << std::endl;
 }
 
 void VirtualMachine::sub() {
-    std::cout << "Sub" << std::endl;
     setOperands();
     _operands.push_back(*_op1 - *_op2);
 }
 
 void VirtualMachine::mul() {
-    std::cout << "Mul" << std::endl;
     setOperands();
     _operands.push_back(*_op1 * *_op2);
 }
 
 
 void VirtualMachine::div() {
-    std::cout << "Div" << std::endl;
     setOperands();
     _operands.push_back(*_op1 / *_op2);
 }
 
 void VirtualMachine::mod() {
-    std::cout << "Mod" << std::endl;
     setOperands();
     _operands.push_back(*_op1 % *_op2);
 }
+
+void VirtualMachine::checkStackSize(std::string const &msg) {
+    if (_operands.empty()) {
+        throw VirtualMachineException("Stack is empty on " + msg);
+    }
+}
+
+VirtualMachine::VirtualMachineException::VirtualMachineException() {}
+
+const char *VirtualMachine::VirtualMachineException::what() const throw() {
+    return _msg.c_str();
+}
+
+VirtualMachine::VirtualMachineException::VirtualMachineException(std::string const &msg) : _msg(
+        "VM: " + msg) {}
+
+VirtualMachine::VirtualMachineException::VirtualMachineException(VirtualMachineException const &src) {
+    *this = src;
+}
+
+VirtualMachine::VirtualMachineException &
+VirtualMachine::VirtualMachineException::operator=(VirtualMachineException const &rhs) {
+    this->_msg = rhs._msg;
+    return *this;
+}
+
+VirtualMachine::VirtualMachineException::~VirtualMachineException() throw() {}

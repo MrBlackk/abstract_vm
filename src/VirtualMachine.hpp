@@ -41,8 +41,24 @@ public:
 
     void mod();
 
+    class VirtualMachineException : public std::exception {
+
+    public:
+        virtual const char *what() const throw();
+        VirtualMachineException(std::string const &msg);
+        VirtualMachineException(VirtualMachineException const &src);
+        VirtualMachineException &operator=(VirtualMachineException const &rhs);
+        virtual ~VirtualMachineException() throw();
+
+    private:
+        VirtualMachineException();
+
+        std::string _msg;
+    };
+
 private:
     void setOperands();
+    void checkStackSize(std::string const &msg);
 
     std::vector<IOperand const *> _operands;
     OperandFactory _factory;

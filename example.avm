@@ -1,6 +1,10 @@
 ; -------------
 ; example.avm -
 ; -------------
+;expected result:
+;42
+;42.42
+;3341.25
 
 push int32(42)
 push int32(33)

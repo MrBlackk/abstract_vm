@@ -16,7 +16,6 @@
 #include "Lexer.hpp"
 
 Lexer::Lexer() {
-    _isOK = true;
 }
 
 Lexer::Lexer(Lexer const &src) {
@@ -26,7 +25,7 @@ Lexer::Lexer(Lexer const &src) {
 Lexer::~Lexer() {}
 
 Lexer &Lexer::operator=(Lexer const &rhs) {
-    this->_isOK = rhs._isOK;
+    this->_isError = rhs._isError;
     return *this;
 }
 
@@ -52,14 +51,14 @@ void Lexer::check(std::vector<std::string> &file) {
         errorMessage(i, "No exit command at end");
     }
 
-    if (!_isOK) {
+    if (_isError) {
         throw LexicalException();
     }
 }
 
 void Lexer::errorMessage(int line, std::string const &msg) {
     std::cout << "Lexical error on line " << line << ":'" << msg << "'"<< std::endl;
-    _isOK = false;
+    _isError = true;
 }
 
 const char *Lexer::LexicalException::what() const throw() {

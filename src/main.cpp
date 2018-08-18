@@ -46,11 +46,11 @@ int main(int argc, char **argv) {
     try {
         Lexer lexer;
         lexer.check(instructions);
-    } catch (Lexer::LexicalException &e) {
-        std::cout << e.what() << " ocurred, stopping virtual machine." << std::endl;
+
+        Parser parser;
+        parser.parse(instructions);
+    } catch (std::exception &e) {
+        std::cout << e.what() << std::endl << "Stopping virtual machine." << std::endl;
         return -1;
     }
-
-    Parser parser;
-    parser.parse(instructions);
 }
