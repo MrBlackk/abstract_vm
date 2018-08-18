@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   OperandFloat.hpp                                   :+:      :+:    :+:   */
+/*   OperandInt16.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vchornyi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/06 13:09:41 by vchornyi          #+#    #+#             */
-/*   Updated: 2018/07/06 13:09:43 by vchornyi         ###   ########.fr       */
+/*   Created: 2018/08/18 16:44:00 by vchornyi          #+#    #+#             */
+/*   Updated: 2018/08/18 16:44:01 by vchornyi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OPERAND_FLOAT_HPP
-#define OPERAND_FLOAT_HPP
+#ifndef OPERAND_INT16_HPP
+#define OPERAND_INT16_HPP
 
 #include "../eOperandType.hpp"
 #include "Operand.hpp"
 
-class OperandFloat : public Operand {
+class OperandInt16 : public Operand {
 
 public:
-    OperandFloat(std::string const &value);
+    OperandInt16(std::string const &value);
 
-    OperandFloat(OperandFloat const &src);
+    OperandInt16(OperandInt16 const &src);
 
-    virtual ~OperandFloat();
+    virtual ~OperandInt16();
 
-    OperandFloat &operator=(OperandFloat const &rhs);
+    OperandInt16 &operator=(OperandInt16 const &rhs);
 
     int getPrecision(void) const;
 
     eOperandType getType(void) const;
 
 private:
-    OperandFloat();
-
+    OperandInt16();
 };
 
 #endif

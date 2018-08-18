@@ -13,9 +13,12 @@
 NAME = avm
 FLAGS = -Wall -Wextra -Werror
 INC = -I./src/operands/IOperand.hpp -I./src/eOperandType.hpp -I./src/OperandFactory.hpp \
--I./src/operands/Operand.hpp -I./src/operands/OperandInt8.hpp -I./src/operands/OperandFloat.hpp -I./src/VirtualMachine.hpp  -I./src/Parser.hpp  -I./src/Lexer.hpp
+-I./src/operands/Operand.hpp -I./src/operands/OperandInt8.hpp -I./src/operands/OperandInt16.hpp \
+-I./src/operands/OperandInt32.hpp -I./src/operands/OperandFloat.hpp -I./src/operands/OperandDouble.hpp \
+-I./src/VirtualMachine.hpp  -I./src/Parser.hpp  -I./src/Lexer.hpp
 
-SRC_NAME = main.cpp OperandFactory.cpp operands/Operand.cpp operands/OperandInt8.cpp operands/OperandFloat.cpp VirtualMachine.cpp Parser.cpp Lexer.cpp
+SRC_NAME = main.cpp OperandFactory.cpp operands/Operand.cpp operands/OperandInt8.cpp operands/OperandInt16.cpp \
+operands/OperandInt32.cpp operands/OperandFloat.cpp operands/OperandDouble.cpp VirtualMachine.cpp Parser.cpp Lexer.cpp
 
 OBJ_NAME = $(SRC_NAME:.cpp=.o)
 OBJ = $(addprefix $(OBJ_DIR),$(OBJ_NAME))

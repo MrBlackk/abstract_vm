@@ -13,7 +13,6 @@
 #ifndef OPERAND_INT8_HPP
 #define OPERAND_INT8_HPP
 
-#include "IOperand.hpp"
 #include "../eOperandType.hpp"
 #include "Operand.hpp"
 

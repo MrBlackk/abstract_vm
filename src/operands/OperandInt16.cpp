@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   OperandFloat.cpp                                   :+:      :+:    :+:   */
+/*   OperandInt16.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vchornyi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/06 13:09:46 by vchornyi          #+#    #+#             */
-/*   Updated: 2018/07/06 13:09:47 by vchornyi         ###   ########.fr       */
+/*   Created: 2018/08/18 16:43:48 by vchornyi          #+#    #+#             */
+/*   Updated: 2018/08/18 16:43:49 by vchornyi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "OperandFloat.hpp"
+#include "OperandInt16.hpp"
 
-OperandFloat::OperandFloat() {}
+OperandInt16::OperandInt16() {}
 
-OperandFloat::OperandFloat(std::string const &value) : Operand(value) {}
+OperandInt16::OperandInt16(std::string const &value) : Operand(value) {}
 
-OperandFloat::OperandFloat(OperandFloat const &src) {
+OperandInt16::OperandInt16(OperandInt16 const &src) {
     *this = src;
 }
 
-OperandFloat::~OperandFloat() {}
+OperandInt16::~OperandInt16() {}
 
-OperandFloat &OperandFloat::operator=(OperandFloat const &rhs) {
+OperandInt16 &OperandInt16::operator=(OperandInt16 const &rhs) {
     (void) rhs;
     return *this;
 }
 
-int OperandFloat::getPrecision(void) const {
-    return 3;
+int OperandInt16::getPrecision(void) const {
+    return 1;
 }
 
-eOperandType OperandFloat::getType(void) const {
-    return Float;
+eOperandType OperandInt16::getType(void) const {
+    return Int16;
 }
 

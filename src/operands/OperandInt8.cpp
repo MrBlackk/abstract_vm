@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <sstream>
 #include "OperandInt8.hpp"
 
 OperandInt8::OperandInt8() {}

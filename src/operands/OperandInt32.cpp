@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   OperandFloat.cpp                                   :+:      :+:    :+:   */
+/*   OperandInt32.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vchornyi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/06 13:09:46 by vchornyi          #+#    #+#             */
-/*   Updated: 2018/07/06 13:09:47 by vchornyi         ###   ########.fr       */
+/*   Created: 2018/08/18 16:44:07 by vchornyi          #+#    #+#             */
+/*   Updated: 2018/08/18 16:44:08 by vchornyi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "OperandFloat.hpp"
+#include "OperandInt32.hpp"
 
-OperandFloat::OperandFloat() {}
+OperandInt32::OperandInt32() {}
 
-OperandFloat::OperandFloat(std::string const &value) : Operand(value) {}
+OperandInt32::OperandInt32(std::string const &value) : Operand(value) {}
 
-OperandFloat::OperandFloat(OperandFloat const &src) {
+OperandInt32::OperandInt32(OperandInt32 const &src) {
     *this = src;
 }
 
-OperandFloat::~OperandFloat() {}
+OperandInt32::~OperandInt32() {}
 
-OperandFloat &OperandFloat::operator=(OperandFloat const &rhs) {
+OperandInt32 &OperandInt32::operator=(OperandInt32 const &rhs) {
     (void) rhs;
     return *this;
 }
 
-int OperandFloat::getPrecision(void) const {
-    return 3;
+int OperandInt32::getPrecision(void) const {
+    return 2;
 }
 
-eOperandType OperandFloat::getType(void) const {
-    return Float;
+eOperandType OperandInt32::getType(void) const {
+    return Int32;
 }
 
