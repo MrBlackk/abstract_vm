@@ -14,6 +14,7 @@
 #include "VirtualMachine.hpp"
 
 VirtualMachine::VirtualMachine() {
+    line = 0;
 }
 
 void VirtualMachine::push(eOperandType type, std::string const &value) {
@@ -24,10 +25,10 @@ void VirtualMachine::assert(eOperandType type, std::string const &value) {
     checkStackSize("assert");
     IOperand const *operand = _operands.back();
     if (operand->getType() != type) {
-        throw VirtualMachineException("Assertion error - Wrong type");
+        throw VirtualMachineException("Assertion error - Wrong type", line);
     }
     if (operand->toString() != value) {
-        throw VirtualMachineException("Assertion error - Wrong value");
+        throw VirtualMachineException("Assertion error - Wrong value", line);
     }
 }
 
@@ -88,7 +89,7 @@ void VirtualMachine::mod() {
 
 void VirtualMachine::checkStackSize(std::string const &msg) {
     if (_operands.empty()) {
-        throw VirtualMachineException("Stack is empty on " + msg);
+        throw VirtualMachineException("Stack is empty on " + msg, line);
     }
 }
 
@@ -98,8 +99,8 @@ const char *VirtualMachine::VirtualMachineException::what() const throw() {
     return _msg.c_str();
 }
 
-VirtualMachine::VirtualMachineException::VirtualMachineException(std::string const &msg) : _msg(
-        "VM: " + msg) {}
+VirtualMachine::VirtualMachineException::VirtualMachineException(std::string const &msg, int line) : _msg(
+        "VM line " + std::to_string(line) + ": " + msg) {}
 
 VirtualMachine::VirtualMachineException::VirtualMachineException(VirtualMachineException const &src) {
     *this = src;

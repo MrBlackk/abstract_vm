@@ -31,7 +31,7 @@ void Parser::parse(std::vector<std::string> &file) {
 
     std::vector<std::string>::iterator it;
     for (it = file.begin(); it != file.end(); it++) {
-        std::cout << *it << std::endl;
+        vm.line++;
         if (!(*it).compare(0, pushStr.size(), pushStr)) {
             value = (*it).substr(pushStr.size() + 1);
             vm.push(getType(value), getNumber(value));
