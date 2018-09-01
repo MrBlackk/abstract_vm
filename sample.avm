@@ -38,7 +38,6 @@ div
 dump
 assert float(10.5)
 push float(0.0)
-push float(0.0)
 div
 dump
 exit

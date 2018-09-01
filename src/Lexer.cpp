@@ -31,7 +31,7 @@ Lexer &Lexer::operator=(Lexer const &rhs) {
 
 void Lexer::check(std::vector<std::string> &file) {
     std::regex instr("(pop|dump|add|sub|mul|div|mod|print)(;.*)?");
-    std::regex instrParam("(push|assert) ((int8|int16|int32)\\(\\d+\\)|(float|double)\\(\\d+\\.\\d+\\))(;.*)?)");
+    std::regex instrParam("(push|assert) ((int8|int16|int32)\\(-?\\d+\\)|(float|double)\\(-?\\d+\\.\\d+\\))(;.*)?)");
     std::regex comment(";.*");
     std::regex emptyLine("");
     std::regex exit("exit");

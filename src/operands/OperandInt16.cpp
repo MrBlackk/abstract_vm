@@ -14,7 +14,9 @@
 
 OperandInt16::OperandInt16() {}
 
-OperandInt16::OperandInt16(std::string const &value) : Operand(value) {}
+OperandInt16::OperandInt16(std::string const &value) : Operand(value) {
+    checkNumberOverflow<short>("Int16", value);
+}
 
 OperandInt16::OperandInt16(OperandInt16 const &src) {
     *this = src;

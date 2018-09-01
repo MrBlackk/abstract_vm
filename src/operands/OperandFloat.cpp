@@ -14,7 +14,9 @@
 
 OperandFloat::OperandFloat() {}
 
-OperandFloat::OperandFloat(std::string const &value) : Operand(value) {}
+OperandFloat::OperandFloat(std::string const &value) : Operand(value) {
+    checkNumberOverflow<float>("Float", value);
+}
 
 OperandFloat::OperandFloat(OperandFloat const &src) {
     *this = src;

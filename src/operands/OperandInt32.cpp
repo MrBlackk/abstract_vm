@@ -14,7 +14,9 @@
 
 OperandInt32::OperandInt32() {}
 
-OperandInt32::OperandInt32(std::string const &value) : Operand(value) {}
+OperandInt32::OperandInt32(std::string const &value) : Operand(value) {
+    checkNumberOverflow<int>("Int32", value);
+}
 
 OperandInt32::OperandInt32(OperandInt32 const &src) {
     *this = src;

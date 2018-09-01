@@ -14,7 +14,9 @@
 
 OperandDouble::OperandDouble() {}
 
-OperandDouble::OperandDouble(std::string const &value) : Operand(value) {}
+OperandDouble::OperandDouble(std::string const &value) : Operand(value) {
+    checkNumberOverflow<double>("Double", value);
+}
 
 OperandDouble::OperandDouble(OperandDouble const &src) {
     *this = src;

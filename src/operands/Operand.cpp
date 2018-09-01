@@ -96,3 +96,23 @@ Operand::WrongOperationException &Operand::WrongOperationException::operator=(Wr
 }
 
 Operand::WrongOperationException::~WrongOperationException() throw() {}
+
+const char *Operand::OverUnderflowException::what() const throw() {
+    return _message.c_str();
+}
+
+Operand::OverUnderflowException::OverUnderflowException() {}
+
+Operand::OverUnderflowException::OverUnderflowException(std::string const &type, std::string const &value,
+                                                        bool isOverflow) {
+    _message = type + " " + (isOverflow ? "over" : "under") + "flow on: " + value;
+}
+
+Operand::OverUnderflowException::OverUnderflowException(OverUnderflowException const &src) { *this = src; }
+
+Operand::OverUnderflowException &Operand::OverUnderflowException::operator=(OverUnderflowException const &rhs) {
+    this->_message = rhs._message;
+    return *this;
+}
+
+Operand::OverUnderflowException::~OverUnderflowException() throw() {}

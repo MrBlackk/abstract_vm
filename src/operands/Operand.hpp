@@ -53,8 +53,37 @@ public:
         std::string _message;
     };
 
+    class OverUnderflowException : public std::exception {
+
+    public:
+        virtual const char *what() const throw();
+
+        OverUnderflowException(std::string const &type, std::string const &value, bool isOverflow);
+
+        OverUnderflowException(OverUnderflowException const &src);
+
+        OverUnderflowException &operator=(OverUnderflowException const &rhs);
+
+        virtual ~OverUnderflowException() throw();
+
+    private:
+        OverUnderflowException();
+
+        std::string _message;
+    };
+
 protected:
     std::string _str;
+
+    template<typename T>
+    void checkNumberOverflow(std::string const &type, std::string const &value) {
+        long double num = std::stold(value);
+        if (num > std::numeric_limits<T>::max()) {
+            throw OverUnderflowException(type, value, true);
+        } else if (num < std::numeric_limits<T>::lowest()) {
+            throw OverUnderflowException(type, value, false);
+        }
+    }
 
 private:
     std::string getStringWithoutTrailingZeros(long double value) const;

@@ -14,7 +14,9 @@
 
 OperandInt8::OperandInt8() {}
 
-OperandInt8::OperandInt8(std::string const &value) : Operand(value) {}
+OperandInt8::OperandInt8(std::string const &value) : Operand(value) {
+    checkNumberOverflow<signed char>("Int8", value);
+}
 
 OperandInt8::OperandInt8(OperandInt8 const &src) {
     *this = src;
