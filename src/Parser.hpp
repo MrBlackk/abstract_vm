@@ -19,12 +19,14 @@
 
 class Parser {
 public:
-    void parse(std::vector<std::string> &file);
+    void parse(std::vector<std::string> &file) const;
 
 private:
-    eOperandType getType(std::string &value);
+    eOperandType getType(std::string &value) const;
 
-    std::string getNumber(std::string &value);
+    std::string getNumber(std::string &value) const;
+
+    bool isCmd(std::vector<std::string>::iterator it, std::string const &cmd) const;
 };
 
 #endif

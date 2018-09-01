@@ -16,7 +16,7 @@
 
 #include "IOperand.hpp"
 
-class Operand: public IOperand {
+class Operand : public IOperand {
 public:
     Operand();
 
@@ -34,12 +34,32 @@ public:
 
     std::string const &toString(void) const;
 
+    class WrongOperationException : public std::exception {
+
+    public:
+        virtual const char *what() const throw();
+
+        WrongOperationException(std::string const &message);
+
+        WrongOperationException(WrongOperationException const &src);
+
+        WrongOperationException &operator=(WrongOperationException const &rhs);
+
+        virtual ~WrongOperationException() throw();
+
+    private:
+        WrongOperationException();
+
+        std::string _message;
+    };
+
 protected:
     std::string _str;
 
 private:
     std::string getStringWithoutTrailingZeros(long double value) const;
-    void prepareOperands(IOperand const &rhs)const;
+
+    void prepareOperands(IOperand const &rhs) const;
 
     mutable long double _first;
     mutable long double _second;

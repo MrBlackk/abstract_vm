@@ -45,9 +45,13 @@ public:
 
     public:
         virtual const char *what() const throw();
+
         VirtualMachineException(std::string const &msg, int line);
+
         VirtualMachineException(VirtualMachineException const &src);
+
         VirtualMachineException &operator=(VirtualMachineException const &rhs);
+
         virtual ~VirtualMachineException() throw();
 
     private:
@@ -59,6 +63,7 @@ public:
     int line;
 private:
     void setOperands();
+
     void checkStackSize(std::string const &msg);
 
     std::vector<IOperand const *> _operands;

@@ -22,9 +22,9 @@ std::vector<std::string> readInstructions(std::istream &ifs, bool isStdIn) {
     std::string line;
 
     while (getline(ifs, line)) {
-		if (isStdIn && line == ";;") {
-			return file;
-		}
+        if (isStdIn && line == ";;") {
+            return file;
+        }
         file.push_back(line);
     }
     return file;
@@ -38,6 +38,7 @@ int main(int argc, char **argv) {
             instructions = readInstructions(ifs, false);
         } else {
             std::cout << "Read error" << std::endl;
+            return -1;
         }
     } else {
         instructions = readInstructions(std::cin, true);
@@ -50,7 +51,7 @@ int main(int argc, char **argv) {
         Parser parser;
         parser.parse(instructions);
     } catch (std::exception &e) {
-        std::cout << e.what() << std::endl << "Stopping virtual machine." << std::endl;
+        std::cout << "Stopping virtual machine due to: " << std::endl << e.what() << std::endl;
         return -1;
     }
 }

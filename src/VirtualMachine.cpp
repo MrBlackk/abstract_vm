@@ -25,19 +25,21 @@ void VirtualMachine::assert(eOperandType type, std::string const &value) {
     checkStackSize("assert");
     IOperand const *operand = _operands.back();
     if (operand->getType() != type) {
-        throw VirtualMachineException("Assertion error - Wrong type", line);
+        throw VirtualMachineException(
+                "Assertion error - Wrong type: " + std::to_string(operand->getType()) + " vs " + std::to_string(type),
+                line);
     }
     if (operand->toString() != value) {
-        throw VirtualMachineException("Assertion error - Wrong value", line);
+        throw VirtualMachineException("Assertion error - Wrong value: " + operand->toString() + " vs " + value, line);
     }
 }
 
 void VirtualMachine::print() {
     checkStackSize("print");
-	IOperand const *operand = _operands.back();
-	assert(Int8, operand->toString());
-	char ch = (char) std::stoi(operand->toString());
-	std::cout << ch << std::endl;
+    IOperand const *operand = _operands.back();
+    assert(Int8, operand->toString());
+    char ch = (char) std::stoi(operand->toString());
+    std::cout << ch << std::endl;
 }
 
 void VirtualMachine::pop() {

@@ -14,53 +14,44 @@
 #include "Parser.hpp"
 #include "VirtualMachine.hpp"
 
-void Parser::parse(std::vector<std::string> &file) {
+void Parser::parse(std::vector<std::string> &file) const {
     VirtualMachine vm;
     std::string pushStr = "push";
-    std::string popStr = "pop";
-    std::string dumpStr = "dump";
     std::string assertStr = "assert";
-    std::string addStr = "add";
-    std::string subStr = "sub";
-    std::string mulStr = "mul";
-    std::string divStr = "div";
-    std::string modStr = "mod";
-    std::string printStr = "print";
-    std::string exitStr = "exit";
     std::string value;
 
     std::vector<std::string>::iterator it;
     for (it = file.begin(); it != file.end(); it++) {
         vm.line++;
-        if (!(*it).compare(0, pushStr.size(), pushStr)) {
+        if (isCmd(it, pushStr)) {
             value = (*it).substr(pushStr.size() + 1);
             vm.push(getType(value), getNumber(value));
-        } else if (!(*it).compare(0, popStr.size(), popStr)) {
+        } else if (isCmd(it, "pop")) {
             vm.pop();
-        } else if (!(*it).compare(0, dumpStr.size(), dumpStr)) {
+        } else if (isCmd(it, "dump")) {
             vm.dump();
-        } else if (!(*it).compare(0, assertStr.size(), assertStr)) {
+        } else if (isCmd(it, assertStr)) {
             value = (*it).substr(assertStr.size() + 1);
             vm.assert(getType(value), getNumber(value));
-        } else if (!(*it).compare(0, addStr.size(), addStr)) {
+        } else if (isCmd(it, "add")) {
             vm.add();
-        } else if (!(*it).compare(0, subStr.size(), subStr)) {
+        } else if (isCmd(it, "sub")) {
             vm.sub();
-        } else if (!(*it).compare(0, mulStr.size(), mulStr)) {
+        } else if (isCmd(it, "mul")) {
             vm.mul();
-        } else if (!(*it).compare(0, divStr.size(), divStr)) {
+        } else if (isCmd(it, "div")) {
             vm.div();
-        } else if (!(*it).compare(0, modStr.size(), modStr)) {
+        } else if (isCmd(it, "mod")) {
             vm.mod();
-        } else if (!(*it).compare(0, printStr.size(), printStr)) {
+        } else if (isCmd(it, "print")) {
             vm.print();
-        } else if (!(*it).compare(0, exitStr.size(), exitStr)) {
+        } else if (isCmd(it, "exit")) {
             break;
         }
     }
 }
 
-eOperandType Parser::getType(std::string &value) {
+eOperandType Parser::getType(std::string &value) const {
     std::string int8 = "int8";
     std::string int16 = "int16";
     std::string int32 = "int32";
@@ -78,9 +69,13 @@ eOperandType Parser::getType(std::string &value) {
         return Double;
 }
 
-std::string Parser::getNumber(std::string &value) {
+std::string Parser::getNumber(std::string &value) const {
     unsigned long first = value.find('(') + 1;
     unsigned long last = value.find(')');
 
     return value.substr(first, last - first);
+}
+
+bool Parser::isCmd(std::vector<std::string>::iterator it, std::string const &cmd) const {
+    return !(*it).compare(0, cmd.size(), cmd);
 }

@@ -60,7 +60,7 @@ void Lexer::check(std::vector<std::string> &file) {
 }
 
 void Lexer::errorMessage(int line, std::string const &msg) {
-    std::cout << "Lexical error on line " << line << ":'" << msg << "'"<< std::endl;
+    std::cout << "Lexical error on line " << line << ":'" << msg << "'" << std::endl;
     _isError = true;
 }
 

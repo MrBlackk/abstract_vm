@@ -33,41 +33,66 @@ void Operand::prepareOperands(IOperand const &rhs) const {
     _second = std::stold(rhs.toString());
 }
 
-IOperand const *Operand::operator+(IOperand const &rhs) const{
+IOperand const *Operand::operator+(IOperand const &rhs) const {
     OperandFactory factory;
     prepareOperands(rhs);
     return factory.createOperand(_type, getStringWithoutTrailingZeros(_first + _second));
 }
 
-IOperand const *Operand::operator-(IOperand const &rhs) const{
+IOperand const *Operand::operator-(IOperand const &rhs) const {
     OperandFactory factory;
     prepareOperands(rhs);
     return factory.createOperand(_type, getStringWithoutTrailingZeros(_first - _second));
 }
 
-IOperand const *Operand::operator*(IOperand const &rhs) const{
+IOperand const *Operand::operator*(IOperand const &rhs) const {
     OperandFactory factory;
     prepareOperands(rhs);
     return factory.createOperand(_type, getStringWithoutTrailingZeros(_first * _second));
 }
 
-IOperand const *Operand::operator/(IOperand const &rhs) const{
+IOperand const *Operand::operator/(IOperand const &rhs) const {
     OperandFactory factory;
     prepareOperands(rhs);
+    if (_second == 0) {
+        throw WrongOperationException("Division by zero");
+    }
     return factory.createOperand(_type, getStringWithoutTrailingZeros(_first / _second));
 }
 
-IOperand const *Operand::operator%(IOperand const &rhs) const{
+IOperand const *Operand::operator%(IOperand const &rhs) const {
     OperandFactory factory;
     if (this->getPrecision() >= Float || rhs.getPrecision() >= Float) {
-        std::cout << "ERROR MODULO FLOAT/DOUBLE" << std::endl;
+        throw WrongOperationException("Floating point number modulo operation");
     }
     _type = this->getPrecision() < rhs.getPrecision() ? rhs.getType() : this->getType();
     long long first = std::stol(this->toString());
     long long second = std::stol(rhs.toString());
+    if (second == 0) {
+        throw WrongOperationException("Modulo by zero");
+    }
     return factory.createOperand(_type, getStringWithoutTrailingZeros(first % second));
 }
 
 std::string const &Operand::toString(void) const {
     return _str;
 }
+
+const char *Operand::WrongOperationException::what() const throw() {
+    return _message.c_str();
+}
+
+Operand::WrongOperationException::WrongOperationException() {}
+
+Operand::WrongOperationException::WrongOperationException(std::string const &message) {
+    _message = "Wrong Operation: " + message;
+}
+
+Operand::WrongOperationException::WrongOperationException(WrongOperationException const &src) { *this = src; }
+
+Operand::WrongOperationException &Operand::WrongOperationException::operator=(WrongOperationException const &rhs) {
+    this->_message = rhs._message;
+    return *this;
+}
+
+Operand::WrongOperationException::~WrongOperationException() throw() {}

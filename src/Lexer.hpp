@@ -18,9 +18,12 @@
 class Lexer {
 public:
     Lexer();
-    Lexer(Lexer const & src);
+
+    Lexer(Lexer const &src);
+
     virtual ~Lexer();
-    Lexer & operator=(Lexer const & rhs);
+
+    Lexer &operator=(Lexer const &rhs);
 
     void check(std::vector<std::string> &file);
 
@@ -28,9 +31,13 @@ public:
 
     public:
         virtual const char *what() const throw();
+
         LexicalException();
+
         LexicalException(LexicalException const &src);
+
         LexicalException &operator=(LexicalException const &rhs);
+
         virtual ~LexicalException() throw();
     };
 
