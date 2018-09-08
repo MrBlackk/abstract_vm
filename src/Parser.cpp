@@ -14,6 +14,19 @@
 #include "Parser.hpp"
 #include "VirtualMachine.hpp"
 
+Parser::Parser() {}
+
+Parser::Parser(Parser const &src) {
+    *this = src;
+}
+
+Parser::~Parser() {}
+
+Parser &Parser::operator=(Parser const &rhs) {
+    (void) rhs;
+    return *this;
+}
+
 void Parser::parse(std::vector<std::string> &file) const {
     VirtualMachine vm;
     std::string pushStr = "push";

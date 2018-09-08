@@ -18,6 +18,19 @@
 #include "operands/OperandFloat.hpp"
 #include "operands/OperandDouble.hpp"
 
+OperandFactory::OperandFactory() {}
+
+OperandFactory::OperandFactory(OperandFactory const &src) {
+    *this = src;
+}
+
+OperandFactory::~OperandFactory() {}
+
+OperandFactory &OperandFactory::operator=(OperandFactory const &rhs) {
+    (void) rhs;
+    return *this;
+}
+
 IOperand const *OperandFactory::createOperand(eOperandType type, std::string const &value) const {
     switch (type) {
         case Int8:

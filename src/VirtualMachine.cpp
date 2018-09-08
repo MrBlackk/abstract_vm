@@ -17,6 +17,17 @@ VirtualMachine::VirtualMachine() {
     line = 0;
 }
 
+VirtualMachine::VirtualMachine(VirtualMachine const &src) {
+    *this = src;
+}
+
+VirtualMachine::~VirtualMachine() {}
+
+VirtualMachine &VirtualMachine::operator=(VirtualMachine const &rhs) {
+    (void) rhs;
+    return *this;
+}
+
 void VirtualMachine::push(eOperandType type, std::string const &value) {
     _operands.push_back(_factory.createOperand(type, value));
 }

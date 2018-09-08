@@ -21,6 +21,12 @@ class VirtualMachine {
 public:
     VirtualMachine();
 
+    VirtualMachine(VirtualMachine const &src);
+
+    virtual ~VirtualMachine();
+
+    VirtualMachine &operator=(VirtualMachine const &rhs);
+
     void push(eOperandType type, std::string const &value);
 
     void assert(eOperandType type, std::string const &value);

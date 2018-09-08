@@ -19,6 +19,14 @@
 
 class Parser {
 public:
+    Parser();
+
+    Parser(Parser const &src);
+
+    virtual ~Parser();
+
+    Parser &operator=(Parser const &rhs);
+
     void parse(std::vector<std::string> &file) const;
 
 private:

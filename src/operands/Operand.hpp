@@ -20,6 +20,12 @@ class Operand : public IOperand {
 public:
     Operand();
 
+    Operand(Operand const &src);
+
+    virtual ~Operand();
+
+    Operand &operator=(Operand const &rhs);
+
     Operand(std::string const &value);
 
     IOperand const *operator+(IOperand const &rhs) const;

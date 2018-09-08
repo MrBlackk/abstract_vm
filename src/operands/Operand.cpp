@@ -16,6 +16,20 @@
 
 Operand::Operand() {}
 
+Operand::Operand(Operand const &src) {
+    *this = src;
+}
+
+Operand::~Operand() {}
+
+Operand &Operand::operator=(Operand const &rhs) {
+    _first = rhs._first;
+    _second = rhs._second;
+    _type = rhs._type;
+    _str = rhs._str;
+    return *this;
+}
+
 Operand::Operand(std::string const &value) {
     _str = value;
 }
