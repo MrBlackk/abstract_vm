@@ -32,20 +32,13 @@ OperandFactory &OperandFactory::operator=(OperandFactory const &rhs) {
 }
 
 IOperand const *OperandFactory::createOperand(eOperandType type, std::string const &value) const {
-    switch (type) {
-        case Int8:
-            return createInt8(value);
-        case Int16:
-            return createInt16(value);
-        case Int32:
-            return createInt32(value);
-        case Float:
-            return createFloat(value);
-        case Double:
-            return createDouble(value);
-        default:
-            throw std::invalid_argument("This eOperandType is not implemented here.");
-    }
+    typedef IOperand const *(OperandFactory::*Create)(std::string const &value) const;
+    Create create[5] = {&OperandFactory::createInt8,
+                        &OperandFactory::createInt16,
+                        &OperandFactory::createInt32,
+                        &OperandFactory::createFloat,
+                        &OperandFactory::createDouble};
+    return (this->*(create[type]))(value);
 }
 
 IOperand const *OperandFactory::createInt8(std::string const &value) const {
