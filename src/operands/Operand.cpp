@@ -104,6 +104,25 @@ std::string const &Operand::toString(void) const {
     return _str;
 }
 
+const char *Operand::OperandException::what() const throw() {
+    return _message.c_str();
+}
+
+Operand::OperandException::OperandException() {}
+
+Operand::OperandException::OperandException(std::string const &message) {
+    _message = "Operand Exception: " + message;
+}
+
+Operand::OperandException::OperandException(OperandException const &src) { *this = src; }
+
+Operand::OperandException &Operand::OperandException::operator=(OperandException const &rhs) {
+    this->_message = rhs._message;
+    return *this;
+}
+
+Operand::OperandException::~OperandException() throw() {}
+
 const char *Operand::WrongOperationException::what() const throw() {
     return _message.c_str();
 }

@@ -44,7 +44,26 @@ public:
 
     std::string const &toString(void) const;
 
-    class WrongOperationException : public std::exception {
+    class OperandException : public std::exception {
+
+    public:
+        OperandException();
+
+        virtual const char *what() const throw();
+
+        OperandException(std::string const &message);
+
+        OperandException(OperandException const &src);
+
+        OperandException &operator=(OperandException const &rhs);
+
+        virtual ~OperandException() throw();
+
+    private:
+        std::string _message;
+    };
+
+    class WrongOperationException : public OperandException {
 
     public:
         virtual const char *what() const throw();
@@ -63,7 +82,7 @@ public:
         std::string _message;
     };
 
-    class OverUnderflowException : public std::exception {
+    class OverUnderflowException : public OperandException {
 
     public:
         virtual const char *what() const throw();

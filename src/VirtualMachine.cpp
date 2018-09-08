@@ -72,11 +72,11 @@ void VirtualMachine::add() {
 
 void VirtualMachine::setOperands() {
     checkStackSize("getting first operand");
-    _op1 = _operands.back();
+    _op2 = _operands.back();
     _operands.pop_back();
 
     checkStackSize("getting second operand");
-    _op2 = _operands.back();
+    _op1 = _operands.back();
     _operands.pop_back();
 }
 
