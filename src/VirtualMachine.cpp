@@ -22,8 +22,9 @@ VirtualMachine::VirtualMachine(VirtualMachine const &src) {
 }
 
 VirtualMachine::~VirtualMachine() {
-    for (IOperand const *op : _operands) {
-        delete op;
+    std::vector<IOperand const *>::iterator it;
+    for (it = _operands.begin(); it != _operands.end(); it++) {
+        delete *it;
     }
     _operands.clear();
 }
