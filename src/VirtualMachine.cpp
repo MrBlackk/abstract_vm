@@ -116,6 +116,18 @@ void VirtualMachine::mod() {
     deleteOperands();
 }
 
+void VirtualMachine::max() {
+    setOperands();
+    _operands.push_back(*_op1 > *_op2);
+    deleteOperands();
+}
+
+void VirtualMachine::min() {
+    setOperands();
+    _operands.push_back(*_op1 < *_op2);
+    deleteOperands();
+}
+
 void VirtualMachine::checkStackSize(std::string const &msg) {
     if (_operands.empty()) {
         throw VirtualMachineException("Stack is empty on " + msg, line);

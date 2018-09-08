@@ -88,6 +88,18 @@ IOperand const *Operand::operator%(IOperand const &rhs) const {
     return factory.createOperand(_type, getStringWithoutTrailingZeros(first % second));
 }
 
+IOperand const *Operand::operator>(IOperand const &rhs) const {
+    OperandFactory factory;
+    prepareOperands(rhs);
+    return factory.createOperand(_type, getStringWithoutTrailingZeros(_first > _second ? _first : _second));
+}
+
+IOperand const *Operand::operator<(IOperand const &rhs) const {
+    OperandFactory factory;
+    prepareOperands(rhs);
+    return factory.createOperand(_type, getStringWithoutTrailingZeros(_first < _second ? _first : _second));
+}
+
 std::string const &Operand::toString(void) const {
     return _str;
 }

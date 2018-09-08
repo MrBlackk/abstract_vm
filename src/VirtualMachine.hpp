@@ -47,6 +47,10 @@ public:
 
     void mod();
 
+    void max();
+
+    void min();
+
     class VirtualMachineException : public std::exception {
 
     public:

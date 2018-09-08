@@ -58,6 +58,10 @@ void Parser::parse(std::vector<std::string> &file) const {
             vm.mod();
         } else if (isCmd(it, "print")) {
             vm.print();
+        } else if (isCmd(it, "max")) {
+            vm.max();
+        } else if (isCmd(it, "min")) {
+            vm.min();
         } else if (isCmd(it, "exit")) {
             break;
         }
