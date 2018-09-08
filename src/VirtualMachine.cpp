@@ -21,7 +21,12 @@ VirtualMachine::VirtualMachine(VirtualMachine const &src) {
     *this = src;
 }
 
-VirtualMachine::~VirtualMachine() {}
+VirtualMachine::~VirtualMachine() {
+    for (IOperand const *op : _operands) {
+        delete op;
+    }
+    _operands.clear();
+}
 
 VirtualMachine &VirtualMachine::operator=(VirtualMachine const &rhs) {
     (void) rhs;
@@ -61,6 +66,7 @@ void VirtualMachine::pop() {
 void VirtualMachine::add() {
     setOperands();
     _operands.push_back(*_op1 + *_op2);
+    deleteOperands();
 }
 
 void VirtualMachine::setOperands() {
@@ -73,6 +79,11 @@ void VirtualMachine::setOperands() {
     _operands.pop_back();
 }
 
+void VirtualMachine::deleteOperands() {
+    delete _op1;
+    delete _op2;
+}
+
 void VirtualMachine::dump() {
     std::vector<IOperand const *>::reverse_iterator it;
     for (it = _operands.rbegin(); it != _operands.rend(); it++)
@@ -82,22 +93,26 @@ void VirtualMachine::dump() {
 void VirtualMachine::sub() {
     setOperands();
     _operands.push_back(*_op1 - *_op2);
+    deleteOperands();
 }
 
 void VirtualMachine::mul() {
     setOperands();
     _operands.push_back(*_op1 * *_op2);
+    deleteOperands();
 }
 
 
 void VirtualMachine::div() {
     setOperands();
     _operands.push_back(*_op1 / *_op2);
+    deleteOperands();
 }
 
 void VirtualMachine::mod() {
     setOperands();
     _operands.push_back(*_op1 % *_op2);
+    deleteOperands();
 }
 
 void VirtualMachine::checkStackSize(std::string const &msg) {

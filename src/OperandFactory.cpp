@@ -44,8 +44,7 @@ IOperand const *OperandFactory::createOperand(eOperandType type, std::string con
         case Double:
             return createDouble(value);
         default:
-            // todo: exception
-            return nullptr;
+            throw std::invalid_argument("This eOperandType is not implemented here.");
     }
 }
 

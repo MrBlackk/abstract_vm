@@ -70,6 +70,8 @@ public:
 private:
     void setOperands();
 
+    void deleteOperands();
+
     void checkStackSize(std::string const &msg);
 
     std::vector<IOperand const *> _operands;
